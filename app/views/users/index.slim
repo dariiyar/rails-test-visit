@@ -7,9 +7,6 @@ table
       th Date
       th Number
       th Description
-      th
-      th
-      th
 
   tbody
     - @users.each do |user|
@@ -18,8 +15,4 @@ table
         td = user.date
         td = user.number
         td = user.description
-        td = link_to 'Show', user
-        td = link_to 'Edit', edit_user_path(user)
-        td = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
-
 br
