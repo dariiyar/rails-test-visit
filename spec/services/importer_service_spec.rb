@@ -55,6 +55,6 @@ RSpec.describe ImporterService do
 end
 
 def call_service(path)
-  @service = ImporterService.new(File.new(Rails.root.join(path)))
+  @service = ImporterService.new(fixture_file_upload(Rails.root.join(path)))
   @service.call
 end
