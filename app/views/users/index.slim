@@ -1,25 +1,27 @@
-h1 Listing users
-
-table
-  thead
-    tr
-      th Name
-      th Date
-      th Number
-      th Description
-
-  tbody
-    - @users.each do |user|
+.container
+  table.table
+    thead.thead-light
       tr
-        td = user.name
-        td = user.date
-        td = user.number
-        td = user.description
-br
+        th scope='col' Name
+        th scope='col' Date
+        th scope='col' Number
+        th scope='col' Description
+        th
 
-h3 Import CSV file!
+    tbody
+      - @users.each do |user|
+        tr
+          td = user.name
+          td = user.date
+          td = user.number
+          td = user.description
+          td = link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+  br
 
-= form_tag import_users_path, multipart: true, remote: true do
-  = file_field_tag :file
-  = submit_tag 'Import CSV'
+  h3 Import CSV file!
+
+  = form_tag import_users_path, multipart: true, remote: true do
+    .form-group
+      = file_field_tag :file, class: 'form-control-file'
+    = submit_tag 'Import CSV', class: 'btn btn-primary'
 

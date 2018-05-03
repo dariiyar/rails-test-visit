@@ -5,6 +5,12 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def destroy
+    user = User.find params[:id]
+    user.destroy
+    redirect_to root_path, flash: { success: t('flash.user.success.destroy') }
+  end
+
   def import
     service.call
     @users = User.all
