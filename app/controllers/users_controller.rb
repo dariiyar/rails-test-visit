@@ -1,11 +1,21 @@
 class UsersController < ApplicationController
+  before_action :import_params, only: :import
+
   def index
     @users = User.all
   end
 
+  def import
+    service.call
+    @users = User.all
+  end
   private
 
-  def user_params
-    params.require(:user).permit(:name, :date, :number, :description)
+  def import_params
+    params.require(:file)
+  end
+
+  def service
+    @service ||= ImporterService.new(params[:file])
   end
 end

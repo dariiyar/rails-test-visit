@@ -16,3 +16,10 @@ table
         td = user.number
         td = user.description
 br
+
+h3 Import CSV file!
+
+= form_tag import_users_path, multipart: true, remote: true do
+  = file_field_tag :file
+  = submit_tag 'Import CSV'
+
