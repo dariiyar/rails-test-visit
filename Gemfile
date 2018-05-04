@@ -52,6 +52,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'database_cleaner'
+  gem 'simplecov', require: false
 end
 
 group :development do
