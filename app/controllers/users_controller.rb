@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def import
     service.call
-    @users = User.all
+    @service.errors[:csv].present? ? render(json: {errors: @service.errors}, status: 422) : @users = User.all
   end
 
   private

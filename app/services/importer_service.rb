@@ -6,12 +6,12 @@ class ImporterService
 
   def initialize(file)
     @file = file
-    @errors =[]
+    @errors = { csv: [], users: []}
   end
 
   def call
     validation
-    import if errors.empty?
+    import if errors[:csv].empty?
   end
 
   private
@@ -24,12 +24,12 @@ class ImporterService
 
   def required_attributes_existense(attributes_keys)
     attributes_keys = REQUIRED_ATTRIBUTES - attributes_keys
-    errors << "required attributes does not set: #{attributes_keys}" if attributes_keys.any?
+    errors[:csv] << "required attributes does not set: #{attributes_keys}" if attributes_keys.any?
   end
 
   def extra_attributes_existense(attributes_keys)
     attributes_keys = attributes_keys - REQUIRED_ATTRIBUTES
-    errors << "these attributes aren't allowed: #{attributes_keys}" if attributes_keys.any?
+    errors[:csv] << "these attributes aren't allowed: #{attributes_keys}" if attributes_keys.any?
   end
 
   def import
@@ -39,7 +39,7 @@ class ImporterService
       begin
         user.present? ? user.update(hash) :  User.create!(hash)
       rescue Exception => e
-        errors << "#{e.message} - #{hash}"
+        errors[:users] << "#{e.message} - #{hash}"
       end
     end
   end

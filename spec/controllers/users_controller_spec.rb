@@ -9,10 +9,19 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "POST #import" do
-    it "retunrs a success responce" do
-      @file = fixture_file_upload(Rails.root.join('spec/fixtures/csv/valid.csv'))
-      post :import, params: { file: @file }, format: :json
-      expect(response).to be_success
+    context 'valid csv file' do
+      it "returns a success responce" do
+        @file = fixture_file_upload(Rails.root.join('spec/fixtures/csv/valid.csv'))
+        post :import, params: { file: @file }, format: :json
+        expect(response).to be_success
+      end
+    end
+    context 'invalid csv file' do
+      it "responce with error status 422" do
+        @file = fixture_file_upload(Rails.root.join('spec/fixtures/csv/invalid_absent.csv'))
+        post :import, params: { file: @file }, format: :json
+        expect(response.status).to eq 422
+      end
     end
   end
 end

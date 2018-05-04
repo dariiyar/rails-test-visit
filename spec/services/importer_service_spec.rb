@@ -6,13 +6,13 @@ RSpec.describe ImporterService do
       context 'extra csv attributes are present' do
         it 'has an error with a list of extra attributes' do
           call_service('spec/fixtures/csv/invalid_extra.csv')
-          expect(@service.errors.first).to include 'extra_attribute'
+          expect(@service.errors[:csv].first).to include 'extra_attribute'
         end
       end
       context 'some csv attributes are absent' do
         it 'has an error with a list of absent attributes' do
           call_service('spec/fixtures/csv/invalid_absent.csv')
-          expect(@service.errors.first).to include 'description'
+          expect(@service.errors[:csv].first).to include 'description'
         end
       end
 
@@ -25,7 +25,7 @@ RSpec.describe ImporterService do
         end
 
         it 'returns an error message' do
-          expect(@service.errors.first).to include 'Validation failed'
+          expect(@service.errors[:users].first).to include 'Validation failed'
         end
       end
       it "doesn't create a list of users" do
