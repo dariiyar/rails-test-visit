@@ -37,7 +37,7 @@ class ImporterService
       hash = row_to_lower_keys_hash(row)
       user = User.find_by(name: hash['name'])
       begin
-        user.present? ? user.update(hash) :  User.create!(hash)
+        user.present? ? user.update!(hash) :  User.create!(hash)
       rescue Exception => e
         errors[:users] << "#{e.message} - #{hash}"
       end
