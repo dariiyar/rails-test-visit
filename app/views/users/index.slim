@@ -22,6 +22,6 @@
 
   = form_tag import_users_path, multipart: true, remote: true do
     .form-group
-      = file_field_tag :file, class: 'form-control-file'
+      = file_field_tag :file, class: 'form-control-file', value: 'Upload CSV'
     = submit_tag 'Import CSV', class: 'btn btn-primary'
 

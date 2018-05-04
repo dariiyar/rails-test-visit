@@ -17,7 +17,12 @@ class UsersController < ApplicationController
   def import
     service.call
     @users = User.all
+    respond_to do |format|
+      format.html { redirect_to root_path, flash: { success: t('flash.users.success.upload') } }
+      format.js   { render :layout => false }
+    end
   end
+
   private
 
   def import_params
