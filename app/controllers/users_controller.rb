@@ -8,19 +8,11 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find params[:id]
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to root_path, flash: { success: t('flash.user.success.destroy') } }
-      format.js   { render :layout => false }
-    end
   end
 
   def import
     service.call
     @users = User.all
-    respond_to do |format|
-      format.html { redirect_to root_path, flash: { success: t('flash.users.success.upload') } }
-      format.js   { render :layout => false }
-    end
   end
 
   private

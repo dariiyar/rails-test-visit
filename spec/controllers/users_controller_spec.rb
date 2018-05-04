@@ -11,7 +11,7 @@ RSpec.describe UsersController, type: :controller do
   describe "POST #import" do
     it "retunrs a success responce" do
       @file = fixture_file_upload(Rails.root.join('spec/fixtures/csv/valid.csv'))
-      post :import, params: { file: @file}, :format => 'js'
+      post :import, params: { file: @file }, format: :json
       expect(response).to be_success
     end
   end
