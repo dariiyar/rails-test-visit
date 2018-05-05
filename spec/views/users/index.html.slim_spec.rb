@@ -11,6 +11,10 @@ RSpec.describe 'users/index', type: :view do
   end
 
   it 'renders a csv import form' do
-    assert_select 'form', count: 1
+    assert_select '#upload_csv', count: 1
+  end
+
+  it 'renders filter form' do
+    assert_select '#filter', count: 1
   end
 end
