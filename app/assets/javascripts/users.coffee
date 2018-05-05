@@ -15,11 +15,19 @@ $(document).on window.initializeOnEvent, ->
     obj.header = header
     obj
 
+  $('#filter')
+    .on 'ajax:success', (evt) ->
+      [data] = evt.detail
+      $('tbody tr').remove()
+      console.log(data)
+      $(data.users).each ->
+        $('tbody').append HandlebarsTemplates['user'](this)
+
   $('#upload_csv')
     .on 'submit', (evt) ->
       $('.alert').remove()
     .on 'ajax:success', (evt) ->
-      [data, status, xhr] = event.detail
+      [data, status, xhr] = evt.detail
       $(data.users).each ->
         $("##{this.id}").remove()
         $('tbody').append HandlebarsTemplates['user'](this)

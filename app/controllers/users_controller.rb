@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   before_action :import_params, only: :import
 
   def index
-    @users = User.all
+    find_users
+    respond_to do |format|
+      format.html
+      format.json { render 'users/import' }
+    end
   end
 
   def destroy
@@ -12,10 +16,14 @@ class UsersController < ApplicationController
 
   def import
     service.call
-    @service.errors[:csv].present? ? render(json: {errors: @service.errors[:csv]}, status: 422) : @users = User.all
+    @service.errors[:csv].present? ? render(json: {errors: @service.errors[:csv]}, status: 422) : find_users
   end
 
   private
+
+  def find_users
+    @users = User.filter(params.slice(:starts_with, :date, :number, :in_description))
+  end
 
   def import_params
     params.require(:file)

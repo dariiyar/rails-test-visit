@@ -1,20 +1,28 @@
 .container
   .row
-  = form_tag import_users_path, id: 'filter',action: :index, remote: true, 'data-type' => 'json' do
+  = form_tag filter_users_path, id: 'filter', action: :index, remote: true, 'data-type' => 'json' do
     .form-group
       .row
         .col
-          = label_tag 'Name', nil, for: 'name'
-          = text_field_tag :name, nil, class: 'form-control form-control-sm', placeholder: 'Filter by name', id: 'name'
+          = label_tag 'Name', nil, for: 'starts_with'
+          = text_field_tag :starts_with, nil, class: 'form-control form-control-sm', placeholder: 'Filter by name', id: 'starts_with'
         .col
           = label_tag 'Date', nil, for: 'date'
-          = text_field_tag :date, nil, class: 'form-control form-control-sm', placeholder: 'Filter by date', id: 'date'
+          = text_field_tag :date,
+                  nil,
+                  class: 'form-control form-control-sm',
+                  placeholder: 'Filter by date',
+                  id: 'date',
+                  'data-provide' => 'datepicker',
+                  'data-date-format' => 'yyyy-mm-dd',
+                  'data-date-autoclose' => 'true'
+
         .col
           = label_tag 'Number', nil, for: 'number'
           = number_field_tag :number, nil, class: 'form-control form-control-sm', placeholder: 'Filter by number', id: 'number', min: 0
         .col
-          = label_tag 'Description', nil, for: 'description'
-          = text_field_tag :description, nil, class: 'form-control form-control-sm', placeholder: 'Filter by descrioption', id: 'description'
+          = label_tag 'Description', nil, for: 'in_description'
+          = text_field_tag :in_description, nil, class: 'form-control form-control-sm', placeholder: 'Filter by description', id: 'in_description'
         .col
           br
           = submit_tag 'Filter', class: 'btn btn-primary'

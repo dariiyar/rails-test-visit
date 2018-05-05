@@ -18,5 +18,5 @@
 // HANDLEBARS TEMPLATES
 //= require handlebars.runtime
 //= require_tree ./templates
-
+//= require bootstrap-datepicker.min
 //= require_tree .
