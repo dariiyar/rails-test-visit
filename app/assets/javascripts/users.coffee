@@ -1,6 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+
 window.initializeOnEvent =
   if window.Turbolinks? and window.Turbolinks.supported
     'turbolinks:load'
@@ -8,6 +9,8 @@ window.initializeOnEvent =
     'ready'
 
 $(document).on window.initializeOnEvent, ->
+  $('.dropdown-toggle').dropdown()
+
   alertObject = (class_name, message, header) ->
     obj = {}
     obj.class = class_name
@@ -19,7 +22,6 @@ $(document).on window.initializeOnEvent, ->
     .on 'ajax:success', (evt) ->
       [data] = evt.detail
       $('tbody tr').remove()
-      console.log(data)
       $(data.users).each ->
         $('tbody').append HandlebarsTemplates['user'](this)
 
@@ -35,7 +37,7 @@ $(document).on window.initializeOnEvent, ->
       if data.errors.length
         $('h3').after HandlebarsTemplates['alert'](alertObject('alert alert-warning', "CSV format data is correct, but some user attribute values has wrong format", 'Warning!'))
         $(data.errors).each ->
-          $('form').before HandlebarsTemplates['alert'](alertObject('alert alert-danger', this, null))
+          $('#upload_csv').before HandlebarsTemplates['alert'](alertObject('alert alert-danger', this, null))
     .on 'ajax:error', (evt) ->
       [errors] = event.detail
       $(errors.errors).each ->

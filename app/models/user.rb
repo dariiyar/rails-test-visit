@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   scope :number, -> (number) { where number: number }
   scope :in_description, -> (description) { where("description like ?", "%#{description}%") }
   scope :date, -> (date) { (where date: date) }
+  scope :order_by, -> (key,value) { order(key => value)}
 end

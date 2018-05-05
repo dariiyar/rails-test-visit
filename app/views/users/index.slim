@@ -4,10 +4,8 @@
     .form-group
       .row
         .col
-          = label_tag 'Name', nil, for: 'starts_with'
           = text_field_tag :starts_with, nil, class: 'form-control form-control-sm', placeholder: 'Filter by name', id: 'starts_with'
         .col
-          = label_tag 'Date', nil, for: 'date'
           = text_field_tag :date,
                   nil,
                   class: 'form-control form-control-sm',
@@ -18,14 +16,15 @@
                   'data-date-autoclose' => 'true'
 
         .col
-          = label_tag 'Number', nil, for: 'number'
           = number_field_tag :number, nil, class: 'form-control form-control-sm', placeholder: 'Filter by number', id: 'number', min: 0
         .col
-          = label_tag 'Description', nil, for: 'in_description'
           = text_field_tag :in_description, nil, class: 'form-control form-control-sm', placeholder: 'Filter by description', id: 'in_description'
-        .col
+      .row
+        .col-lg-2
           br
-          = submit_tag 'Filter', class: 'btn btn-primary'
+          = select_tag :order_by, order_by_options, class: 'form-control form-control-sm', placeholder: 'Sort By', id: 'sort_by'
+      br
+        = submit_tag 'Filter', class: 'btn btn-primary'
   .row
     table.table
       thead.thead-light

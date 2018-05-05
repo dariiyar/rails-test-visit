@@ -13,10 +13,13 @@
 //= require jquery3
 //= require rails-ujs
 //= require turbolinks
+//= require popper
 //= require bootstrap
 
 // HANDLEBARS TEMPLATES
 //= require handlebars.runtime
 //= require_tree ./templates
+//= require dropdown.min
 //= require bootstrap-datepicker.min
 //= require_tree .
+

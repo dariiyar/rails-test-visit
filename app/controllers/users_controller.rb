@@ -22,7 +22,8 @@ class UsersController < ApplicationController
   private
 
   def find_users
-    @users = User.filter(params.slice(:starts_with, :date, :number, :in_description))
+    service = FindUserService.new(params)
+    @users = service.call
   end
 
   def import_params
