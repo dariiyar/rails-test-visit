@@ -1,8 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'users/index', type: :view do
+RSpec.describe 'users/index.html.slim', type: :view do
   before(:each) do
     @users = create_list(:user, 2)
+    allow(view).to receive_messages(paginate: nil)
     render
   end
 

@@ -13,7 +13,7 @@ RSpec.feature "Users management" do
     visit '/'
     upload_csv
     click_button 'Import CSV'
-    expect(page).to have_selector('tbody tr', count: 2)
+    expect(page).to have_selector('.alert-success', count: 1)
   end
 
   scenario 'filter users by name', js: true do
