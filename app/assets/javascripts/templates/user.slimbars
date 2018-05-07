@@ -1,8 +1,0 @@
-tr id= '{{ id }}'
-  td = '{{ name }}'
-  td = '{{ date }}'
-  td = '{{ number }}'
-  td = '{{ description}}'
-  td
-    a[data-confirm = 'Are you sure?' data-remote = 'true' rel = 'nofollow' data-method = 'delete' href = '{{delete_path}}']
-      |Destroy

@@ -1,0 +1,6 @@
+tr id=user.id
+  td = user.name
+  td = user.date
+  td = user.number
+  td = user.description
+  td = link_to 'Destroy', user, method: :delete,remote: true, data: { confirm: 'Are you sure?' }

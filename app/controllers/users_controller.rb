@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     find_users
     respond_to do |format|
       format.html
-      format.json { render 'users/import' }
+      format.js
     end
   end
 

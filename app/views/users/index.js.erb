@@ -1,0 +1,5 @@
+$('.pagination').remove()
+$('.row.table').after('<%= escape_javascript(paginate(@users, :remote => true).to_s) %>')
+$('tbody tr').remove()
+$('tbody').append('<%= escape_javascript(render partial: 'partials/user', collection: @users) %>')
+

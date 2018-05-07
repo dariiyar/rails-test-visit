@@ -18,21 +18,11 @@ $(document).on window.initializeOnEvent, ->
     obj.header = header
     obj
 
-  $('#filter')
-    .on 'ajax:success', (evt) ->
-      [data] = evt.detail
-      $('tbody tr').remove()
-      $(data.users).each ->
-        $('tbody').append HandlebarsTemplates['user'](this)
-
   $('#upload_csv')
     .on 'submit', (evt) ->
       $('.alert').remove()
     .on 'ajax:success', (evt) ->
       [data, status, xhr] = evt.detail
-      $(data.users).each ->
-        $("##{this.id}").remove()
-        $('tbody').append HandlebarsTemplates['user'](this)
       $('h3').after HandlebarsTemplates['alert'](alertObject('alert alert-success', "CSV data imported successfully!!!", 'Well Done!')) unless data.errors.length
       if data.errors.length
         $('h3').after HandlebarsTemplates['alert'](alertObject('alert alert-warning', "CSV format data is correct, but some user attribute values has wrong format", 'Warning!'))
